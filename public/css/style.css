@@ -1,0 +1,318 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #222;
+  background: #fff;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  position: relative;
+  width: 300px;
+  flex-shrink: 0;
+  border-right: 1px solid #ddd;
+  padding: 24px 24px 80px;
+}
+
+.table-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.table-list li {
+  font-size: 22px;
+  padding: 10px 0;
+  border-bottom: 1px solid #999;
+  cursor: pointer;
+}
+
+.table-list li.active {
+  font-weight: bold;
+}
+
+.table-list li:hover {
+  color: #e8772e;
+}
+
+.create-new {
+  position: absolute;
+  left: 0;
+  bottom: 16px;
+}
+
+/* Content */
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 32px;
+}
+
+.content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.content-header h2 {
+  margin: 0;
+  font-weight: normal;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 24px;
+}
+
+.records {
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.records th,
+.records td {
+  padding: 10px 24px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.records th {
+  background: #f5f5f5;
+  font-weight: normal;
+}
+
+.muted {
+  color: #888;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 8px 20px;
+}
+
+.btn-orange {
+  background: #f0802a;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+.btn-orange:hover {
+  background: #d96e1c;
+}
+
+.btn-green {
+  background: #68a57d;
+  color: #fff;
+  font-family: Georgia, serif;
+  font-size: 20px;
+}
+
+.btn-green:hover {
+  background: #568f69;
+}
+
+.btn-plain {
+  background: #eee;
+  border: 1px solid #bbb;
+  font-family: Arial, sans-serif;
+  min-width: 160px;
+}
+
+.btn-link {
+  background: none;
+  padding: 0;
+  font-size: 14px;
+  text-decoration: underline;
+}
+
+.row-delete {
+  background: none;
+  border: none;
+  font-family: Georgia, serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.row-delete:hover,
+.danger {
+  color: #c0392b;
+}
+
+/* Modals */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 72px 16px;
+  background: rgba(0, 0, 0, 0.15);
+  overflow-y: auto;
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 820px;
+  padding: 24px;
+}
+
+.modal h3 {
+  margin: 0 0 20px;
+  font-weight: normal;
+  font-size: 24px;
+}
+
+.modal-light {
+  background: #fdf9f8;
+  border: 1px solid #ccc;
+}
+
+.modal-slate {
+  background: #8d9eab;
+  color: #fff;
+  min-height: 420px;
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: none;
+  border: none;
+  font-family: Georgia, serif;
+  font-size: 28px;
+  color: inherit;
+  cursor: pointer;
+}
+
+.label {
+  display: block;
+  font-size: 20px;
+  margin: 12px 0;
+}
+
+.modal input,
+.modal select {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  width: 250px;
+  max-width: 100%;
+}
+
+.field-grid,
+.field-row {
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.field-grid {
+  margin-top: 28px;
+}
+
+.field-row {
+  margin-bottom: 18px;
+}
+
+.field-row select {
+  width: 140px;
+}
+
+.remove-field {
+  margin-left: 8px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-field {
+  display: inline-block;
+  color: #2c3e66;
+  font-size: 18px;
+  text-decoration: none;
+  margin: 0 0 28px 6px;
+}
+
+.add-field:hover {
+  text-decoration: underline;
+}
+
+.record-input {
+  margin-bottom: 24px;
+}
+
+.record-input label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.checkbox-label {
+  display: flex !important;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-label input {
+  width: auto;
+}
+
+.error {
+  color: #b00020;
+  background: #fff;
+  padding: 8px 12px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .content {
+    padding: 16px;
+  }
+
+  .field-grid,
+  .field-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
