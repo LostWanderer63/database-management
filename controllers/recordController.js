@@ -4,7 +4,6 @@ const HttpError = require('../util/httpError');
 exports.addRecord = async (req, res) => {
   const { model, fields } = registry.getTable(req.params.table);
 
-  // Only accept the table's own fields; empty inputs become NULL.
   const values = {};
   for (const { name } of fields) {
     const value = req.body[name];

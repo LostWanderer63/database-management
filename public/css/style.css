@@ -18,7 +18,6 @@ body {
   min-height: 100vh;
 }
 
-/* Sidebar */
 .sidebar {
   position: relative;
   width: 300px;
@@ -54,7 +53,6 @@ body {
   bottom: 16px;
 }
 
-/* Content */
 .content {
   flex: 1;
   min-width: 0;
@@ -107,7 +105,6 @@ body {
   color: #888;
 }
 
-/* Buttons */
 .btn {
   border: none;
   cursor: pointer;
@@ -163,7 +160,6 @@ body {
   color: #c0392b;
 }
 
-/* Modals */
 .overlay {
   position: fixed;
   inset: 0;

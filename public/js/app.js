@@ -24,7 +24,7 @@ const recordInputs = $('recordInputs');
 const addRecordError = $('addRecordError');
 
 let types = ['STRING'];
-let current = null; // { name, fields, records }
+let current = null;
 
 async function request(url, options = {}) {
   const res = await fetch(url, {
@@ -52,8 +52,6 @@ function showError(node, message) {
   node.hidden = !message;
 }
 
-/* ---------- Modals ---------- */
-
 function openModal(modal) {
   modal.hidden = false;
   const firstInput = modal.querySelector('input, select');
@@ -78,8 +76,6 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') document.querySelectorAll('.overlay').forEach(closeModal);
 });
 
-/* ---------- Sidebar ---------- */
-
 async function loadTables(selectName) {
   const names = await request(API);
   tableList.replaceChildren(
@@ -94,8 +90,6 @@ async function loadTables(selectName) {
 
   if (selectName) await selectTable(selectName);
 }
-
-/* ---------- Records view ---------- */
 
 function formatValue(value, type) {
   if (value === null || value === undefined) return '';
@@ -179,8 +173,6 @@ deleteTableBtn.addEventListener('click', async () => {
   }
 });
 
-/* ---------- Create table ---------- */
-
 function addFieldRow(name = '', type = 'STRING') {
   const nameInput = el('input', { type: 'text', placeholder: 'field name', value: name, required: true, autocomplete: 'off' });
   nameInput.className = 'field-name';
@@ -230,8 +222,6 @@ createTableForm.addEventListener('submit', async (e) => {
     showError(createTableError, err.message);
   }
 });
-
-/* ---------- Add record ---------- */
 
 function inputFor(field) {
   const id = `record-${field.name}`;
@@ -287,8 +277,6 @@ addRecordForm.addEventListener('submit', async (e) => {
     showError(addRecordError, err.message);
   }
 });
-
-/* ---------- Init ---------- */
 
 window.addEventListener('DOMContentLoaded', async () => {
   try {

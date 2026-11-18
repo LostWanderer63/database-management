@@ -1,5 +1,3 @@
-// Keeps a Sequelize model for every user-created table.
-// Tables are defined at runtime, and rebuilt from the database on startup.
 const { DataTypes } = require('sequelize');
 const sequelize = require('../util/database');
 const HttpError = require('../util/httpError');
@@ -24,7 +22,7 @@ const VALIDATORS = {
   DATE: { isDate: { msg: 'must be a valid date' } },
 };
 
-const tables = new Map(); // tableName -> { model, fields: [{ name, type }] }
+const tables = new Map();
 
 function sqlTypeToKey(sqlType) {
   const t = sqlType.toUpperCase();
@@ -105,7 +103,6 @@ exports.loadExistingTables = async () => {
     const columns = await queryInterface.describeTable(name);
     const columnNames = Object.keys(columns);
 
-    // Only pick up tables shaped like the ones this app creates.
     if (!['id', 'created_at', 'updated_at'].every((c) => columnNames.includes(c))) continue;
 
     const fields = columnNames
@@ -124,10 +121,12 @@ exports.getTable = (name) => {
 };
 
 exports.createTable = async (name, rawFields) => {
-  const fields = (rawFields || []).map((f) => ({
-    name: String(f.name || '').trim(),
-    type: String(f.type || '').trim().toUpperCase(),
-  }));
+  const fields = (rawFields || [])
+    .map((f) => ({
+      name: String(f.name || '').trim(),
+      type: String(f.type || '').trim().toUpperCase(),
+    }))
+    .filter((f) => !RESERVED_COLUMNS.has(f.name.toLowerCase()));
   validateDefinition(name, fields);
 
   const entry = defineModel(name, fields);

@@ -20,7 +20,6 @@ const sequelize = new Sequelize(config.database, config.user, config.password, {
   logging: false,
 });
 
-// Creates the database itself if it does not exist yet, so no manual SQL step is needed.
 async function ensureDatabase() {
   const { database, ...connection } = config;
   const conn = await mysql.createConnection(connection);

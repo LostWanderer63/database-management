@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/tables', tableRoutes);
 
-// Express 5 forwards errors thrown in async handlers here.
 app.use((err, req, res, next) => {
   if (err.status) return res.status(err.status).json({ message: err.message });
   if (err.name === 'SequelizeValidationError' || err.name === 'SequelizeDatabaseError') {
